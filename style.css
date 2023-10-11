@@ -1,0 +1,133 @@
+.gs-main
+{
+    background-color: #feeff4;
+}
+.sect-spacer
+{
+    padding: 50px 0px;
+}
+.text-justify
+{
+    text-align: justify;
+}
+.card {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    background: #fff;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.card .card-image {
+    height: 20%;
+    position: relative;
+    overflow: hidden;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: -80px;
+}
+
+.card .card-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    pointer-events: none;
+}
+
+.card .card-image .card-caption {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: #fff;
+    font-size: 1.3em;
+    text-shadow: 0 2px 5px rgba(33, 33, 33, 0.5);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+/* ============ Card Table ============ */
+
+.table {
+    margin-bottom: 0px;
+}
+
+.card .table {
+    padding: 20px 30px;
+}
+
+.card-blog {
+    margin-top: 80px;
+}
+.category {
+    position: relative;
+    line-height: 0;
+    margin: 15px 0;
+}
+.text-info {
+    color: #00bcd4;
+}
+
+/* CSS */
+.button-19 {
+    appearance: button;
+    background-color: #cb2d5a;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: din-round,sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 50%;
+  }
+  
+  .button-19:after {
+    background-clip: padding-box;
+    background-color: #ec366b;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+  
+  .button-19:main,
+  .button-19:focus {
+    user-select: auto;
+  }
+  
+  .button-19:hover:not(:disabled) {
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+  }
+  
+  .button-19:disabled {
+    cursor: auto;
+  }

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soft Skills</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./common.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+</head>
+    
+<body>
+    <div class="sect-bg">
+        <div class="sect-spacer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="card-bg p-5" style="border-radius: 25px;">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <div class="clock-wrap">
+                                        <div class="clock pro-0">
+                                          <span class="count">0</span>
+                                        </div>
+                                      </div>
+                                      
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                            
+                            
+                            <div class="text-center">
+                              <div>
+                                <h3 class="mt-3" id="output">
+                                  
+                                </h3>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row text-center">
+                                <div class="col-md-5">
+                                    <button class="word" id="button1" >Words</button>
+                                    <button id="button2">Connection</button>
+                                    <button id="button3">Sentences</button>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="vl"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <span>Enter the value</span>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="action">
+                                        <div class="input">
+                                          <input class="input-num" type="number" min="1" placeholder="Enter Minute"><input data-action="start" class="input-btn" type="button" value="Start">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    
+    // sentence
+$step = 1;
+$loops = Math.round(100 / $step);
+$increment = 360 / $loops;
+$half = Math.round($loops / 2);
+$barColor = '#ec366b';
+$backColor = '#feeff4';
+
+$(function(){
+  clock.init();
+});
+clock={
+  interval:null,
+  init:function(){
+    $('.input-btn').click(function(){
+      switch($(this).data('action')){
+        case'start':
+          clock.stop();
+          clock.start($('.input-num').val());
+        break;
+        case'stop':
+          clock.stop();
+        break;
+      }
+    });
+  },
+  start:function(t){
+    var pie = 0;
+    var num = 0;
+    var min = t?t:1;
+    var sec = min*60;
+    var lop = sec;
+    $('.count').text(min);
+    if(min>0){
+      $('.count').addClass('min')
+    }else{
+      $('.count').addClass('sec')
+    }
+    clock.interval = setInterval(function(){
+      sec = sec-1;
+      if(min>1){
+        pie = pie+(100/(lop/min));
+      }else{
+        pie = pie+(100/(lop));
+      }
+      if(pie>=101){ pie = 1; }
+      num = (sec/60).toFixed(2).slice(0,-3);
+      if(num==0){
+        $('.count').removeClass('min').addClass('sec').text(sec);
+      }else{
+        $('.count').removeClass('sec').addClass('min').text(num);
+      }
+      //$('.clock').attr('class','clock pro-'+pie.toFixed(2).slice(0,-3));
+      //console.log(pie+'__'+sec);
+      $i = (pie.toFixed(2).slice(0,-3))-1;
+      if($i < $half){
+        $nextdeg = (90 + ( $increment * $i ))+'deg';
+        $('.clock').css({'background-image':'linear-gradient(90deg,'+$backColor+' 50%,transparent 50%,transparent),linear-gradient('+$nextdeg+','+$barColor+' 50%,'+$backColor+' 50%,'+$backColor+')'});
+      }else{
+        $nextdeg = (-90 + ( $increment * ( $i - $half ) ))+'deg';
+        $('.clock').css({'background-image':'linear-gradient('+$nextdeg+','+$barColor+' 50%,transparent 50%,transparent),linear-gradient(270deg,'+$barColor+' 50%,'+$backColor+' 50%,'+$backColor+')'});
+      }
+      if(sec==0){
+        clearInterval(clock.interval);
+        $('.count').text(0);
+        //$('.clock').removeAttr('class','clock pro-100');
+        $('.clock').removeAttr('style');
+      }
+    },1000);
+  },
+  stop:function(){
+    clearInterval(clock.interval);
+    $('.count').text(0);
+    $('.clock').removeAttr('style');
+  }
+}
+const array1 = ["Run", "Jump","Dance","Swim","Eat", "Sleep","Read","Write"
+,"Talk", "Sing", "Play","Laugh","Cry","Walk","Climb","Skip","Cook","Drive","Fly","Hop", "Study", "Think","Smile","Hug","Surf", "Build","Paint","Draw","Listen", "Watch", "Hike","Shop", "Ride", "Skate", "Swim", "Kick", "Catch", "Throw", "Brush", "Clean", "Wash", "Ring", "Push", "Pull", "Cook", "Bake", "Mix", "Shake", "Stir", "Write", "Type", "Sing", "Dance", "Exercise", "Stretch", "Fold","Glue","Cut","Tie","Sew","Plant","Water","Dig", "rake","Sweep", "Race", "Sneeze", "Tickle", "Count"];
+const array2 = ["My favorite pet","The best book I've ever read", "Why I love my family", "Fun things to do at the park", "How to make a peanut butter and jelly sandwich", "My favorite cartoon character", "A magical adventure with unicorns", "Why I like going to school", "My dream vacation", "The importance of kindness", "My favorite superhero", "How to make a paper airplane", "My favorite ice cream flavor", "The funniest joke I know", "The best day of my life", "Why I love playing with my friends", "How to plant a flower","My favorite bedtime story","What I want to be when I grow up", "My favorite season", "The best board game to play with friends", "How to take care of a pet goldfish", "My favorite food", "The importance of saying 'please' and 'thank you'", "My imaginary friend", "How to tie shoelaces","My favorite holiday","The best way to eat pizza","The importance of recycling","My dream treehouse"];
+const array3 = ["I love reading adventure titles that take me to far-off lands.","Can you recommend some good romance titles for me to enjoy?", "The title of the movie gave away the surprise ending.", "Her essay lacked a catchy title to grab the reader's attention.", "Please write your name and title on the cover page of the report.", "The title of the song perfectly captured the mood of the lyrics.","He earned the title of  Champion after winning the race.", "The title of the recipe book is Cooking Delights.", "She was given the title of Employee of the Month for her hard work.", "The title of the play was intriguing and drew a large audience.", "The title of the painting is Starry Night by Vincent van Gogh.","The author's witty titles always make me want to read his books.", "The movie's title song became a chart-topping hit.", "The title of the documentary was thought-provoking and relevant.","The title of the game is Mystery Mansion.", "The title page of the book was beautifully illustrated.","Her official title at the company is Director of Marketing.", "I need to come up with a creative title for my school project.", "The title of the news article caught my eye, so I read it.", "He proudly bears the title of 'Captain' in the army."];
+
+// Get references to the buttons and output element
+const button1 = document.getElementById("button1");
+const button2 = document.getElementById("button2");
+const button3 = document.getElementById("button3");
+const output = document.getElementById("output");
+
+// Initialize a variable to keep track of the current array index
+let currentIndex = 0;
+
+// Create an array of arrays
+const arrayOfArrays = [array1, array2, array3];
+
+// Add click event listeners to the buttons
+button1.addEventListener("click", function () {
+    displayArray(array1);
+});
+
+button2.addEventListener("click", function () {
+    displayArray(array2);
+});
+
+button3.addEventListener("click", function () {
+    displayArray(array3);
+});
+
+// Function to display an array
+function displayArray(array) {
+    if (currentIndex >= array.length) {
+        currentIndex = 0;
+    }
+    output.textContent = array[currentIndex];
+    
+    currentIndex++;
+}
+</script>
+</html>
