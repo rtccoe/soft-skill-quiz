@@ -72,10 +72,11 @@
             </div>
         </div>
     </div>
+    <audio id="warningSound" src="sound.mp3"></audio>
 </body>
 <script>
     
-    // sentence
+// sentence
 $step = 1;
 $loops = Math.round(100 / $step);
 $increment = 360 / $loops;
@@ -140,7 +141,6 @@ clock={
       if(sec==0){
         clearInterval(clock.interval);
         $('.count').text(0);
-        //$('.clock').removeAttr('class','clock pro-100');
         $('.clock').removeAttr('style');
       }
     },1000);
@@ -156,32 +156,40 @@ const array1 = ["Run", "Jump","Dance","Swim","Eat", "Sleep","Read","Write"
 const array2 = ["My favorite pet","The best book I've ever read", "Why I love my family", "Fun things to do at the park", "How to make a peanut butter and jelly sandwich", "My favorite cartoon character", "A magical adventure with unicorns", "Why I like going to school", "My dream vacation", "The importance of kindness", "My favorite superhero", "How to make a paper airplane", "My favorite ice cream flavor", "The funniest joke I know", "The best day of my life", "Why I love playing with my friends", "How to plant a flower","My favorite bedtime story","What I want to be when I grow up", "My favorite season", "The best board game to play with friends", "How to take care of a pet goldfish", "My favorite food", "The importance of saying 'please' and 'thank you'", "My imaginary friend", "How to tie shoelaces","My favorite holiday","The best way to eat pizza","The importance of recycling","My dream treehouse"];
 const array3 = ["I love reading adventure titles that take me to far-off lands.","Can you recommend some good romance titles for me to enjoy?", "The title of the movie gave away the surprise ending.", "Her essay lacked a catchy title to grab the reader's attention.", "Please write your name and title on the cover page of the report.", "The title of the song perfectly captured the mood of the lyrics.","He earned the title of  Champion after winning the race.", "The title of the recipe book is Cooking Delights.", "She was given the title of Employee of the Month for her hard work.", "The title of the play was intriguing and drew a large audience.", "The title of the painting is Starry Night by Vincent van Gogh.","The author's witty titles always make me want to read his books.", "The movie's title song became a chart-topping hit.", "The title of the documentary was thought-provoking and relevant.","The title of the game is Mystery Mansion.", "The title page of the book was beautifully illustrated.","Her official title at the company is Director of Marketing.", "I need to come up with a creative title for my school project.", "The title of the news article caught my eye, so I read it.", "He proudly bears the title of 'Captain' in the army."];
 
-// Get references to the buttons and output element
+
 const button1 = document.getElementById("button1");
 const button2 = document.getElementById("button2");
 const button3 = document.getElementById("button3");
 const output = document.getElementById("output");
+const inputNum = document.querySelector(".input-num");
 
-// Initialize a variable to keep track of the current array index
 let currentIndex = 0;
 
-// Create an array of arrays
+
 const arrayOfArrays = [array1, array2, array3];
 
-// Add click event listeners to the buttons
+
 button1.addEventListener("click", function () {
-    displayArray(array1);
+    if (inputNum.value) {
+        displayArray(array1);
+        resetTimer();
+    }
 });
 
 button2.addEventListener("click", function () {
-    displayArray(array2);
+    if (inputNum.value) {
+        displayArray(array2);
+        resetTimer();
+    }
 });
 
 button3.addEventListener("click", function () {
-    displayArray(array3);
+    if (inputNum.value) {
+        displayArray(array3);
+        resetTimer();
+    }
 });
 
-// Function to display an array
 function displayArray(array) {
     if (currentIndex >= array.length) {
         currentIndex = 0;
@@ -190,5 +198,33 @@ function displayArray(array) {
     
     currentIndex++;
 }
+function resetTimer() {
+    clock.stop();
+    const minutes = $('.input-num').val();
+    $('.count').text(minutes);
+
+    clock.start(minutes);
+
+    setTimeout(function () {
+        document.getElementById("warningSound").play();
+    }, minutes * 60 * 1000); 
+}
+
+button1.addEventListener("click", function () {
+    displayArray(array1);
+    resetTimer();
+});
+
+button2.addEventListener("click", function () {
+    displayArray(array2);
+    resetTimer(); 
+});
+
+button3.addEventListener("click", function () {
+    displayArray(array3);
+    resetTimer(); 
+});
+
+
 </script>
-</html>
+</html>x
