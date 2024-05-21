@@ -25,7 +25,7 @@
                                 <div class="col-md-6">
                                     <div class="clock-wrap">
                                         <div class="clock pro-0">
-                                          <span class="count">0</span>
+                                          <span class="count">00:00</span>
                                         </div>
                                       </div>
                                       
@@ -84,6 +84,61 @@ $half = Math.round($loops / 2);
 $barColor = '#ec366b';
 $backColor = '#feeff4';
 
+const array1 = ["Run", "Jump","Dance","Swim","Eat", "Sleep","Read","Write"
+,"Talk", "Sing", "Play","Laugh","Cry","Walk","Climb","Skip","Cook","Drive","Fly","Hop", "Study", "Think","Smile","Hug","Surf", "Build","Paint","Draw","Listen", "Watch", "Hike","Shop", "Ride", "Skate", "Swim", "Kick", "Catch", "Throw", "Brush", "Clean", "Wash", "Ring", "Push", "Pull", "Cook", "Bake", "Mix", "Shake", "Stir", "Write", "Type", "Sing", "Dance", "Exercise", "Stretch", "Fold","Glue","Cut","Tie","Sew","Plant","Water","Dig", "rake","Sweep", "Race", "Sneeze", "Tickle", "Count"];
+const array2 = ["My favorite pet","The best book I've ever read", "Why I love my family", "Fun things to do at the park", "How to make a peanut butter and jelly sandwich", "My favorite cartoon character", "A magical adventure with unicorns", "Why I like going to school", "My dream vacation", "The importance of kindness", "My favorite superhero", "How to make a paper airplane", "My favorite ice cream flavor", "The funniest joke I know", "The best day of my life", "Why I love playing with my friends", "How to plant a flower","My favorite bedtime story","What I want to be when I grow up", "My favorite season", "The best board game to play with friends", "How to take care of a pet goldfish", "My favorite food", "The importance of saying 'please' and 'thank you'", "My imaginary friend", "How to tie shoelaces","My favorite holiday","The best way to eat pizza","The importance of recycling","My dream treehouse"];
+const array3 = ["I love reading adventure titles that take me to far-off lands.","Can you recommend some good romance titles for me to enjoy?", "The title of the movie gave away the surprise ending.", "Her essay lacked a catchy title to grab the reader's attention.", "Please write your name and title on the cover page of the report.", "The title of the song perfectly captured the mood of the lyrics.","He earned the title of  Champion after winning the race.", "The title of the recipe book is Cooking Delights.", "She was given the title of Employee of the Month for her hard work.", "The title of the play was intriguing and drew a large audience.", "The title of the painting is Starry Night by Vincent van Gogh.","The author's witty titles always make me want to read his books.", "The movie's title song became a chart-topping hit.", "The title of the documentary was thought-provoking and relevant.","The title of the game is Mystery Mansion.", "The title page of the book was beautifully illustrated.","Her official title at the company is Director of Marketing.", "I need to come up with a creative title for my school project.", "The title of the news article caught my eye, so I read it.", "He proudly bears the title of 'Captain' in the army."];
+
+const button1 = document.getElementById("button1");
+const button2 = document.getElementById("button2");
+const button3 = document.getElementById("button3");
+const output = document.getElementById("output");
+const inputNum = document.querySelector(".input-num");
+
+let currentIndex = 0;
+const arrayOfArrays = [array1, array2, array3];
+
+function displayArray(array) {
+    if (currentIndex >= array.length) {
+        currentIndex = 0;
+    }
+    output.textContent = array[currentIndex];
+    
+    currentIndex++;
+}
+
+function resetTimer() {
+    clock.stop();
+    const minutes = $('.input-num').val();
+    $('.count').text(minutes);
+
+    clock.start(minutes);
+
+    setTimeout(function () {
+        document.getElementById("warningSound").play();
+    }, minutes * 60 * 1000); 
+}
+
+function newWord() {
+    status = true;
+    displayArray(array1);
+    resetTimer();
+}
+
+button1.addEventListener("click", newWord);
+
+button2.addEventListener("click", function () {
+    status = true;
+    displayArray(array2);
+    resetTimer();
+});
+
+button3.addEventListener("click", function () {
+    status = true;
+    displayArray(array3);
+    resetTimer();
+});
+
 $(function(){
   clock.init();
 });
@@ -93,8 +148,10 @@ clock={
     $('.input-btn').click(function(){
       switch($(this).data('action')){
         case'start':
-          clock.stop();
-          clock.start($('.input-num').val());
+            if (status) {
+                clock.stop();
+                clock.start($('.input-num').val());
+            }
         break;
         case'stop':
           clock.stop();
@@ -108,11 +165,11 @@ clock={
     var min = t?t:1;
     var sec = min*60;
     var lop = sec;
-    $('.count').text(min);
+    $('.count').text(((min < 10) ?('0' + min) : min) + ':00');
     if(min>0){
-      $('.count').addClass('min')
+      $('.count')
     }else{
-      $('.count').addClass('sec')
+      $('.count')
     }
     clock.interval = setInterval(function(){
       sec = sec-1;
@@ -124,9 +181,14 @@ clock={
       if(pie>=101){ pie = 1; }
       num = (sec/60).toFixed(2).slice(0,-3);
       if(num==0){
-        $('.count').removeClass('min').addClass('sec').text(sec);
+        let tempSec = sec%60;
+        tempSec = (tempSec < 10) ?('0' + tempSec) : tempSec;
+        $('.count').text(00:${tempSec}); // Seconds
       }else{
-        $('.count').removeClass('sec').addClass('min').text(num);
+        let tempMin = Math.floor(sec/60), tempSec = sec%60;
+        tempMin = (tempMin < 10) ?('0' + tempMin) : tempMin;
+        tempSec = (tempSec < 10) ?('0' + tempSec) : tempSec;
+        $('.count').text(${tempMin}:${tempSec}); // Minutes
       }
       //$('.clock').attr('class','clock pro-'+pie.toFixed(2).slice(0,-3));
       //console.log(pie+'__'+sec);
@@ -140,8 +202,9 @@ clock={
       }
       if(sec==0){
         clearInterval(clock.interval);
-        $('.count').text(0);
+        $('.count').text('00:00');
         $('.clock').removeAttr('style');
+        newWord();
       }
     },1000);
   },
@@ -151,80 +214,6 @@ clock={
     $('.clock').removeAttr('style');
   }
 }
-const array1 = ["Run", "Jump","Dance","Swim","Eat", "Sleep","Read","Write"
-,"Talk", "Sing", "Play","Laugh","Cry","Walk","Climb","Skip","Cook","Drive","Fly","Hop", "Study", "Think","Smile","Hug","Surf", "Build","Paint","Draw","Listen", "Watch", "Hike","Shop", "Ride", "Skate", "Swim", "Kick", "Catch", "Throw", "Brush", "Clean", "Wash", "Ring", "Push", "Pull", "Cook", "Bake", "Mix", "Shake", "Stir", "Write", "Type", "Sing", "Dance", "Exercise", "Stretch", "Fold","Glue","Cut","Tie","Sew","Plant","Water","Dig", "rake","Sweep", "Race", "Sneeze", "Tickle", "Count"];
-const array2 = ["My favorite pet","The best book I've ever read", "Why I love my family", "Fun things to do at the park", "How to make a peanut butter and jelly sandwich", "My favorite cartoon character", "A magical adventure with unicorns", "Why I like going to school", "My dream vacation", "The importance of kindness", "My favorite superhero", "How to make a paper airplane", "My favorite ice cream flavor", "The funniest joke I know", "The best day of my life", "Why I love playing with my friends", "How to plant a flower","My favorite bedtime story","What I want to be when I grow up", "My favorite season", "The best board game to play with friends", "How to take care of a pet goldfish", "My favorite food", "The importance of saying 'please' and 'thank you'", "My imaginary friend", "How to tie shoelaces","My favorite holiday","The best way to eat pizza","The importance of recycling","My dream treehouse"];
-const array3 = ["I love reading adventure titles that take me to far-off lands.","Can you recommend some good romance titles for me to enjoy?", "The title of the movie gave away the surprise ending.", "Her essay lacked a catchy title to grab the reader's attention.", "Please write your name and title on the cover page of the report.", "The title of the song perfectly captured the mood of the lyrics.","He earned the title of  Champion after winning the race.", "The title of the recipe book is Cooking Delights.", "She was given the title of Employee of the Month for her hard work.", "The title of the play was intriguing and drew a large audience.", "The title of the painting is Starry Night by Vincent van Gogh.","The author's witty titles always make me want to read his books.", "The movie's title song became a chart-topping hit.", "The title of the documentary was thought-provoking and relevant.","The title of the game is Mystery Mansion.", "The title page of the book was beautifully illustrated.","Her official title at the company is Director of Marketing.", "I need to come up with a creative title for my school project.", "The title of the news article caught my eye, so I read it.", "He proudly bears the title of 'Captain' in the army."];
-
-
-const button1 = document.getElementById("button1");
-const button2 = document.getElementById("button2");
-const button3 = document.getElementById("button3");
-const output = document.getElementById("output");
-const inputNum = document.querySelector(".input-num");
-
-let currentIndex = 0;
-
-
-const arrayOfArrays = [array1, array2, array3];
-
-
-button1.addEventListener("click", function () {
-    if (inputNum.value) {
-        displayArray(array1);
-        resetTimer();
-    }
-});
-
-button2.addEventListener("click", function () {
-    if (inputNum.value) {
-        displayArray(array2);
-        resetTimer();
-    }
-});
-
-button3.addEventListener("click", function () {
-    if (inputNum.value) {
-        displayArray(array3);
-        resetTimer();
-    }
-});
-
-function displayArray(array) {
-    if (currentIndex >= array.length) {
-        currentIndex = 0;
-    }
-    output.textContent = array[currentIndex];
-    
-    currentIndex++;
-}
-function resetTimer() {
-    clock.stop();
-    const minutes = $('.input-num').val();
-    $('.count').text(minutes);
-
-    clock.start(minutes);
-
-    setTimeout(function () {
-        document.getElementById("warningSound").play();
-    }, minutes * 60 * 1000); 
-}
-
-button1.addEventListener("click", function () {
-    displayArray(array1);
-    resetTimer();
-});
-
-button2.addEventListener("click", function () {
-    displayArray(array2);
-    resetTimer(); 
-});
-
-button3.addEventListener("click", function () {
-    displayArray(array3);
-    resetTimer(); 
-});
-
 
 </script>
-</html>x
+</html>
