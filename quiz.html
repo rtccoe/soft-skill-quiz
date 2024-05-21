@@ -183,12 +183,12 @@ clock={
       if(num==0){
         let tempSec = sec%60;
         tempSec = (tempSec < 10) ?('0' + tempSec) : tempSec;
-        $('.count').text(00:${tempSec}); // Seconds
+        $('.count').text(`00:${tempSec}`); // Seconds
       }else{
         let tempMin = Math.floor(sec/60), tempSec = sec%60;
         tempMin = (tempMin < 10) ?('0' + tempMin) : tempMin;
         tempSec = (tempSec < 10) ?('0' + tempSec) : tempSec;
-        $('.count').text(${tempMin}:${tempSec}); // Minutes
+        $('.count').text(`${tempMin}:${tempSec}`); // Minutes
       }
       //$('.clock').attr('class','clock pro-'+pie.toFixed(2).slice(0,-3));
       //console.log(pie+'__'+sec);
