@@ -36,14 +36,14 @@
                             
                             <div class="text-center">
                               <div>
-                                <h3 class="mt-3" id="output">
+                                <h1 class="mt-3" id="output" style="font-size: 55px;">
                                   
-                                </h3>
+                                </h1>
                               </div>
                             </div>
                             <hr>
                             <div class="row text-center">
-                                <div class="col-md-5">
+                                <div class="col-md-7">
                                     <button class="word" id="button1" >Words</button>
                                     <button id="button2">Connection</button>
                                     <button id="button3">Sentences</button>
@@ -51,13 +51,18 @@
                                 <div class="col-md-1">
                                     <div class="vl"></div>
                                 </div>
-                                <div class="col-md-3">
-                                    <span>Enter the value</span>
+                                <div class="col-md-2">
+                                    <span>set the time</span>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="action">
                                         <div class="input">
-                                          <input class="input-num" type="number" min="1" placeholder="Enter Minute"><input data-action="start" class="input-btn" type="button" value="Start">
+                                          <input class="input-num" type="number" min="1" placeholder="Time">
+                                          <!-- <input data-action="start" class="input-btn" type="button" value="Start"> -->
+                                        </div>
+                                        <div class="input">
+                                          <!-- <input class="input-num" type="number" min="1" placeholder="Time"> -->
+                                          <input data-action="start" class="input-btn" type="button" value="Start">
                                         </div>
                                     </div>
                                 </div>
@@ -90,373 +95,13 @@ const array2 = ["My Favorite Book","The Importance of Family","A Memorable Journ
 ,"The  ole of Government in Society","My Favorite Educational App",,"The Importance of Disaster Preparedness","The Impact of Fast Fashion on the Environment","My Favorite Board Game","The Benefits of Learning Coding","A Day at the Museum","The Role of Pharmacists in Healthcare","The Importance of Animal Conservation","My Favorite Tech Gadget",,"The Impact of E-commerce on Retail", "The Benefits of Online Learning","A Day in the Life of a Scientist","The Role of Renewable Energy","My Favorite Smartphone App",,"The Importance of Mental Health","The Impact of Space Exploration" ,"My Favorite Historical Figure", "The Benefits of Group Study","A Day at the Market","The Role of Civil Engineers","The Importance of Safety in Engineering","The Impact of Artificial Intelligence","My Favorite Food Recip ", "The Benefits of Participating in Workshops","A Day in the Life of an Engineer","The Role of Software Engineers in Modern Technology","The Importance of Internet Safety","The Impact of Automation on Jobs","My Favo ite Science Fiction Movie",
 "The Benefits of Internships","A Day at a Tech Expo","The Role of Mechanical Engineers","The Importance of Creativity in Engineering","The Impact of 3D Printing","My Favorite Programming Language", "The Benefits of Hackathons","A Day in the Life of a Tech Start-up","The Role of Electrical Engineers","The Importance of Innovation","The Impact of Big Data","My Favorite Invention", "The Benefits of Networking","A Day at a Renewable Energy Plant","The Role of Chemical Engineers","The Importance of Ethical Hacking","The Impact of Virtual Reality","My Favorite Engineering Project", "The Benefits of Joining Student Clubs","A Day at a Science Fair","The Role of Aerospace Engineers","The Importance of Green Technology","The Impact of Genetic Engineering","My Favorite Engi eering Book",
 "The Benefits of Peer Learning","A Day in the Life of a Researcher","The Role of Biomedical Engineers","The Importance of Software Development","The Impact of Cloud Computing","My Favorite Engineering Tool", "The Benefits of Career Counseling","A Day at a Robotics Workshop","The Role of Environmental Engineers","The Importance of Sustainable Development","The Impact of Nanotechnology","My Favorite Engineeri g Website", "The Benefits of Professional Certifications","A Day at a Tech Conference","The Role of Network Engineers","The Importance of Cyber Law","The Impact of Quantum Computing","My Favorite Engineering Magazine", "The Benefits of Language Learning for Engineers","A Day at a Space Research Center","The Role of Marine Engineers","The Importance of Industrial Safety","The Impact of Biotechnology","My Favorite Engineering Course", "My favorite pet","The best book I've ever read", "Why I love my family", "Fun things to do at the park", "How to make a peanut butter and jelly sandwich", "My favorite cartoon character", "A magical adventure with unicorns", "Why I like going to school", "My dream vacation", "The importance of kindness", "My favorite superhero", "How to make a paper airplane", "My favorite ice cream flavor", "The funniest joke I know", "The best day of my life", "Why I love playing with my friends", "How to plant a flower","My favorite bedtime story","What I want to be when I grow up", "My favorite season", "The best board game to play with friends", "How to take care of a pet goldfish", "My favorite food", "The importance of saying 'please' and 'thank you'", "My imaginary friend", "How to tie shoelaces","My favorite holiday","The best way to eat pizza","The importance of recycling","My dream treehouse"];
-const array3 = ["A stitch in time saves nine.","Actions speak louder than words.","All that glitters is not gold.","An apple a day keeps the doctor away.","Better late than never.","A bird in the hand is worth two in the bush.","A picture is worth a thousand words.","Absence makes the heart grow fonder.","Beauty is in the eye of the beholder.","Beggars can’t be choosers.","Birds of a feather flock together.","Blood is thicker than water.","Don’t count your chickens before they hatch.","
-Don’t judge a book by its cover.","Easy come, easy go."
-// Every cloud has a silver lining.
-// Familiarity breeds contempt.
-// Fortune favors the bold.
-// Honesty is the best policy.
-// If it ain’t broke, don’t fix it.
-// If you can’t beat them, join them.
-// It takes two to tango.
-// Laughter is the best medicine.
-// Let sleeping dogs lie.
-// Look before you leap.
-// Make hay while the sun shines.
-// Necessity is the mother of invention.
-// No pain, no gain.
-// Old habits die hard.
-// One good turn deserves another.
-// Practice makes perfect.
-// Rome wasn’t built in a day.
-// Slow and steady wins the race.
-// The early bird catches the worm.
-// The pen is mightier than the sword.
-// There’s no place like home.
-// Time heals all wounds.
-// Two heads are better than one.
-// When in Rome, do as the Romans do.
-// When the going gets tough, the tough get going.
-// Where there’s a will, there’s a way.
-// You can’t have your cake and eat it too.
-// You can’t teach an old dog new tricks.
-// A journey of a thousand miles begins with a single step.
-// A leopard can’t change its spots.
-// A watched pot never boils.
-// All’s fair in love and war.
-// An ounce of prevention is worth a pound of cure.
-// Don’t bite the hand that feeds you.
-// Don’t put all your eggs in one basket.
-// The grass is always greener on the other side.
-// Necessity knows no law.
-// Out of sight, out of mind.
-// The early bird catches the worm.
-// The proof of the pudding is in the eating.
-// The road to hell is paved with good intentions.
-// There’s no smoke without fire.
-// Time and tide wait for no man.
-// Too many cooks spoil the broth.
-// You can lead a horse to water, but you can’t make it drink.
-// A fool and his money are soon parted.
-// A rolling stone gathers no moss.
-// Actions speak louder than words.
-// All good things must come to an end.
-// All is fair in love and war.
-// An idle mind is the devil's workshop.
-// As you sow, so shall you reap.
-// Beauty is only skin deep.
-// Better to be safe than sorry.
-// Better to have loved and lost than never to have loved at all.
-// Beware of Greeks bearing gifts.
-// Curiosity killed the cat.
-// Discretion is the better part of valor.
-// Do as I say, not as I do.
-// Don't bite off more than you can chew.
-// Don't bite the hand that feeds you.
-// Don't count your chickens before they hatch.
-// Don't cross the bridge till you come to it.
-// Don't judge a man until you've walked a mile in his shoes.
-// Don't look a gift horse in the mouth.
-// Don't put the cart before the horse.
-// Every cloud has a silver lining.
-// Fools rush in where angels fear to tread.
-// Good things come to those who wait.
-// Honesty is the best policy.
-// If it ain’t broke, don’t fix it.
-// If the shoe fits, wear it.
-// If you can't beat them, join them.
-// If you want something done right, do it yourself.
-// It's always darkest before the dawn.
-// It's better to give than to receive.
-// It's no use crying over spilt milk.
-// Let sleeping dogs lie.
-// Like father, like son.
-// Look before you leap.
-// Love is blind.
-// Make hay while the sun shines.
-// Money doesn't grow on trees.
-// Necessity is the mother of invention.
-// Never look a gift horse in the mouth.
-// No news is good news.
-// No pain, no gain.
-// Nothing ventured, nothing gained.
-// Once bitten, twice shy.
-// One man's trash is another man's treasure.
-// Practice what you preach.
-// Rome wasn't built in a day.
-// The apple doesn't fall far from the tree.
-// The best things in life are free.
-// The bigger they are, the harder they fall.
-// The early bird catches the worm.
-// The grass is always greener on the other side.
-// The pen is mightier than the sword.
-// The squeaky wheel gets the grease.
-// The way to a man's heart is through his stomach.
-// There are plenty of fish in the sea.
-// Time heals all wounds.
-// Too many cooks spoil the broth.
-// Two heads are better than one.
-// When in Rome, do as the Romans do.
-// When the going gets tough, the tough get going.
-// Where there's smoke, there's fire.
-// You can lead a horse to water, but you can't make him drink.
-// You can't have your cake and eat it too.
-// You can't judge a book by its cover.
-// You can't teach an old dog new tricks.
-// A chain is only as strong as its weakest link.
-// A diamond is forever.
-// A fool and his money are soon parted.
-// A friend in need is a friend indeed.
-// A house divided against itself cannot stand.
-// A leopard cannot change its spots.
-// A little knowledge is a dangerous thing.
-// A penny saved is a penny earned.
-// A picture is worth a thousand words.
-// A place for everything, and everything in its place.
-// A rolling stone gathers no moss.
-// A stitch in time saves nine.
-// A watched pot never boils.
-// Absence makes the heart grow fonder.
-// Actions speak louder than words.
-// All good things must come to an end.
-// All is fair in love and war.
-// All that glitters is not gold.
-// All's well that ends well.
-// An apple a day keeps the doctor away.
-// An ounce of prevention is worth a pound of cure.
-// As you sow, so shall you reap.
-// Ask and you shall receive.
-// Beauty is in the eye of the beholder.
-// Beauty is only skin deep.
-// Beggars can't be choosers.
-// Better late than never.
-// Better safe than sorry.
-// Better the devil you know than the devil you don't.
-// Birds of a feather flock together.
-// Blood is thicker than water.
-// Charity begins at home.
-// Cleanliness is next to godliness.
-// Clothes make the man.
-// Crime doesn't pay.
-// Curiosity killed the cat.
-// Discretion is the better part of valor.
-// Do as I say, not as I do.
-// Do unto others as you would have them do unto you.
-// Don't bite off more than you can chew.
-// Don't bite the hand that feeds you.
-// Don't burn your bridges behind you.
-// Don't count your chickens before they hatch.
-// Don't cry over spilled milk.
-// Don't cut off your nose to spite your face.
-// Don't judge a book by its cover.
-// Don't look a gift horse in the mouth.
-// Don't make a mountain out of a molehill.
-// Don't put all your eggs in one basket.
-// Don't put the cart before the horse.
-// Don't throw the baby out with the bathwater.
-// Early to bed and early to rise makes a man healthy, wealthy, and wise.
-// Easier said than done.
-// East or West, home is best.
-// Easy come, easy go.
-// Eat, drink, and be merry.
-// Empty vessels make the most noise.
-// Every cloud has a silver lining.
-// Every dog has its day.
-// Every rose has its thorn.
-// Every picture tells a story.
-// Failing to plan is planning to fail.
-// Faith will move mountains.
-// Familiarity breeds contempt.
-// Feed a cold and starve a fever.
-// Fight fire with fire.
-// Finders keepers, losers weepers.
-// First come, first served.
-// First impressions are the most lasting.
-// Fish and visitors smell after three days.
-// Fools rush in where angels fear to tread.
-// Forgive and forget.
-// Fortune favors the bold.
-// From little acorns mighty oaks grow.
-// Genius is one percent inspiration and ninety-nine percent perspiration.
-// Give a man a fish, and you feed him for a day; teach a man to fish,
-// Give credit where credit is due.
-// Give him an inch and he'll take a mile.
-// God helps those who help themselves.
-// Good fences make good neighbors.
-// Good things come to those who wait.
-// Half a loaf is better than none.
-// Haste makes waste.
-// He who hesitates is lost.
-// Hell hath no fury like a woman scorned.
-// History repeats itself.
-// Honesty is the best policy.
-// Hope for the best, but prepare for the worst.
-// If at first you don't succeed, try, try again.
-// If it ain't broke, don't fix it.
-// If the mountain won't come to Mohammed, then Mohammed must go to the mountain.
-// If wishes were horses, beggars would ride.
-// If you can't beat them, join them.
-// If you can't stand the heat, get out of the kitchen.
-// If you lie down with dogs, you'll get up with fleas.
-// If you want something done right, do it yourself.
-// Ignorance is bliss.
-// In for a penny, in for a pound.
-// It ain't over till the fat lady sings.
-// It is better to give than to receive.
-// It is no use crying over spilt milk.
-// It never rains but it pours.
-// It takes all sorts to make a world.
-// It takes two to tango.
-// It's a small world.
-// It's an ill wind that blows nobody any good.
-// It's better to be safe than sorry.
-// It's better to have loved and lost than never to have loved at all.
-// It's no use locking the stable door after the horse has bolted.
-// It's the early bird that catches the worm.
-// It's the exception that proves the rule.
-// It's the thought that counts.
-// Jack of all trades, master of none.
-// Keep your friends close and your enemies closer.
-// Knowledge is power.
-// Laughter is the best medicine.
-// Leave well enough alone.
-// Let sleeping dogs lie.
-// Let the buyer beware.
-// Lightning never strikes twice in the same place.
-// Like father, like son.
-// Little strokes fell great oaks.
-// Live and let live.
-// Look before you leap.
-// Love is blind.
-// Make hay while the sun shines.
-// Man does not live by bread alone.
-// Many hands make light work.
-// Misery loves company.
-// Money can't buy happiness.
-// Money doesn't grow on trees.
-// Necessity is the mother of invention.
-// Never judge a book by its cover.
-// No man is an island.
-// No news is good news.
-// No pain, no gain.
-// Nothing ventured, nothing gained.
-// Oil and water don't mix.
-// Once bitten, twice shy.
-// One good turn deserves another.
-// One man's trash is another man's treasure.
-// Only time will tell.
-// Out of sight, out of mind.
-// Practice makes perfect.
-// Practice what you preach.
-// Prevention is better than cure.
-// Pride comes before a fall.
-// Put your best foot forward.
-// Rome wasn't built in a day.
-// Save for a rainy day.
-// Seeing is believing.
-// Silence is golden.
-// Slow and steady wins the race.
-// Spare the rod and spoil the child.
-// Still waters run deep.
-// Stupid is as stupid does.
-// The apple doesn't fall far from the tree.
-// The best defense is a good offense.
-// The best things in life are free.
-// The bigger they are, the harder they fall.
-// The early bird catches the worm.
-// The end justifies the means.
-// The grass is always greener on the other side.
-// The more things change, the more they stay the same.
-// The pen is mightier than the sword.
-// The proof of the pudding is in the eating.
-// The road to hell is paved with good intentions.
-// The squeaky wheel gets the grease.
-// The way to a man's heart is through his stomach.
-// There are plenty of fish in the sea.
-// There's a sucker born every minute.
-// There's no place like home.
-// There's no time like the present.
-// There's no use crying over spilt milk.
-// There's safety in numbers.
-// They that sow the wind shall reap the whirlwind.
-// Time and tide wait for no man.
-// Time flies when you're having fun.
-// Time heals all wounds.
-// To each his own.
-// Too many cooks spoil the broth.
-// Two heads are better than one.
-// Two wrongs don't make a right.
-// Variety is the spice of life.
-// Virtue is its own reward.
-// Waste not, want not.
-// We live and learn.
-// What goes around, comes around.
-// What you don't know won't hurt you.
-// When in Rome, do as the Romans do.
-// When the cat's away, the mice will play.
-// When the going gets tough, the tough get going.
-// Where there's a will, there's a way.
-// Where there's smoke, there's fire.
-// While the cat's away, the mice will play.
-// You can catch more flies with honey than with vinegar.
-// You can lead a horse to water, but you can't make him drink.
-// You can't have your cake and eat it too.
-// You can't judge a book by its cover.
-// You can't make a silk purse out of a sow's ear.
-// You can't teach an old dog new tricks.
-// You can't win them all.
-// You get what you pay for.
-// You reap what you sow.
-// You scratch my back and I'll scratch yours.
-// Youth is wasted on the young.
-// A bird in the hand is worth two in the bush.
-// A cat has nine lives.
-// A drowning man will clutch at a straw.
-// A fool and his money are soon parted.
-// A friend in need is a friend indeed.
-// A journey of a thousand miles begins with a single step.
-// A leopard can't change its spots.
-// A little knowledge is a dangerous thing.
-// A picture is worth a thousand words.
-// A place for everything and everything in its place.
-// A rolling stone gathers no moss.
-// A soft answer turneth away wrath.
-// A stitch in time saves nine.
-// A watched pot never boils.
-// Absence makes the heart grow fonder.
-// Actions speak louder than words.
-// After the storm comes the calm.
-// All is fair in love and war.
-// All that glitters is not gold.
-// All work and no play makes Jack a dull boy.
-// An apple a day keeps the doctor away.
-// An ounce of prevention is worth a pound of cure.
-// As the crow flies.
-// As you make your bed, so you must lie in it.
-// As you sow, so shall you reap.
-// Ask a silly question and you get a silly answer.
-// Beauty is in the eye of the beholder.
-// Beauty is only skin deep.
-// Beggars can't be choosers.
-// Better late than never.
-// Better safe than sorry.
-// Better the devil you know than the devil you don't.
-// Better to have loved and lost than never to have loved at all.
-// Beware of Greeks bearing gifts.
-// Birds of a feather flock together.
-// Blood is thicker than water.
-// Cleanliness is next to godliness.
-// Clothes make the man.
-// Curiosity killed the cat.
-// Discretion is the better part of valor.
-// Do as I say, not as I do.
-// Do unto others as you would have them do unto you.
-// Don't bite off more than you can chew.
-// Don't bite the hand that feeds you.
-// Don't burn your bridges behind you.
-// Don't count your chickens before they hatch.
+const array3 = [
+  
 
-];
+
+
+
+"The Role of Engineers in Society","The Benefits of Team Sports","I love reading adventure titles that take me to far-off lands.","Can you recommend some good romance titles for me to enjoy?", "The title of the movie gave away the surprise ending.", "Her essay lacked a catchy title to grab the reader's attention.", "Please write your name and title on the cover page of the report.", "The title of the song perfectly captured the mood of the lyrics.","He earned the title of  Champion after winning the race.", "The title of the recipe book is Cooking Delights.", "She was given the title of Employee of the Month for her hard work.", "The title of the play was intriguing and drew a large audience.", "The title of the painting is Starry Night by Vincent van Gogh.","The author's witty titles always make me want to read his books.", "The movie's title song became a chart-topping hit.", "The title of the documentary was thought-provoking and relevant.","The title of the game is Mystery Mansion.", "The title page of the book was beautifully illustrated.","Her official title at the company is Director of Marketing.", "I need to come up with a creative title for my school project.", "The title of the news article caught my eye, so I read it.", "He proudly bears the title of 'Captain' in the army."];
 
 const button1 = document.getElementById("button1");
 const button2 = document.getElementById("button2");
